@@ -38,20 +38,7 @@ function displayLibrary(b) {
 
 function addBookToLibrary(b) {
     myLibrary.push(b);
-    createCard(b);
 }
-
-const harryPotter = new Book('Harry Potter', 'JK Rowling', 321, 'yes');
-const oneMore = new Book('One More', 'Someone', 43, "no");
-const anotherOne = new Book('Another One', 'Another Someone', 432, 'yes');
-const anotherOne1 = new Book('Another One1', 'Another Someone1', 332, 'no');
-
-addBookToLibrary(harryPotter);
-addBookToLibrary(oneMore);
-addBookToLibrary(anotherOne);
-addBookToLibrary(anotherOne1);
-
-myLibrary.forEach((b) => displayLibrary(b));
 
 const newBookBtn = document.querySelector('.newBookBtn');
 const formContainerPopUp = document.querySelector('.formContainerPopUp');
@@ -66,7 +53,20 @@ blocker.addEventListener('click', () => {
     formContainerPopUp.style.display='none';
 })
 
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
+const read = document.querySelector('#read');
+
+
 const submitBtn = document.querySelector('.submitBtn')
 submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
-})
+    const book = new Book(title.value, author.value, pages.value, read.checked);
+    addBookToLibrary(book); 
+    displayLibrary(book);
+    formContainerPopUp.style.display='none';
+});
+
+myLibrary.forEach((b) => console.log(b));
+console.log(myLibrary);
