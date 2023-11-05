@@ -11,6 +11,31 @@
     <div class="header">
         <span>Library</span>
     </div>
-    <div class="container"></div>
+    <div class="formContainerPopUp">
+        <div class="blocker"></div>
+        <div class="formContainer">
+            <form action="index.html" method="post">
+                <section class="formInformation">
+                    <label for="title">TITLE</label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="author">AUTHOR</label>
+                    <input type="text" name="author" id="author" required>
+                    <label for="pages">PAGES</label>
+                    <input type="number" name="pages" id="pages" required>
+                    <div>
+                        <label for="read">READ IT</label>
+                        <input type="checkbox" name="read" id="read">
+                    </div>
+                </section>
+                <section class="formBtn">
+                    <button class="submitBtn" type="submit">Add</button>
+                </section>
+            </form>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="newBook"><button class="newBookBtn">New Book</button></div>
+        <div class="container"></div>
+    </div>
 </body>
 </html>

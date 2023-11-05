@@ -52,3 +52,21 @@ addBookToLibrary(anotherOne);
 addBookToLibrary(anotherOne1);
 
 myLibrary.forEach((b) => displayLibrary(b));
+
+const newBookBtn = document.querySelector('.newBookBtn');
+const formContainerPopUp = document.querySelector('.formContainerPopUp');
+const blocker = document.querySelector('.blocker');
+formContainerPopUp.style.display = 'none';
+
+newBookBtn.addEventListener('click', () => {
+    formContainerPopUp.style.display='block';
+})
+
+blocker.addEventListener('click', () => {
+    formContainerPopUp.style.display='none';
+})
+
+const submitBtn = document.querySelector('.submitBtn')
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+})

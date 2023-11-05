@@ -1,3 +1,7 @@
+:root {
+    --shadow: 0 8px 8px -4px rgb(0 0 0 / 0.2)
+}
+
 body, html{
     margin: 0;
     padding: 0;
@@ -12,7 +16,7 @@ body, html{
     font-size: 27px;
     font-weight: bold;
     padding: 15px;
-    box-shadow: 0 8px 8px -4px rgb(0 0 0 / 0.2);
+    box-shadow: var(--shadow);
 }
 
 .container {
@@ -22,12 +26,98 @@ body, html{
     padding: 30px;
 }
 
+.newBook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+.newBook > button {
+    padding: 10px;
+    width: 12em;
+    background-color: transparent;
+    border:1px solid black;
+    border-radius: 1.2em;
+}
+
+.newBook > button:hover {
+    transform: scale(1.1);
+}   
+
+.blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background: rgba(0,0,0,.5);
+    filter: blur(1px);
+}
+
+.formContainer {
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 300px;
+    height: 300px;
+    background-color: #FFFFFF;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    border-radius: 1.2em;
+}
+
+.formInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap:5px;
+}
+
+.formInformation > input {
+    width: 290px;
+    height: 20px;
+}
+
+.formInformation > div {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.formBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formBtn > .submitBtn {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 1.2em;
+    padding: 20px;
+    width: 150px;
+    margin-top: 20px;
+}
+
+.formBtn > button:hover {
+    background-color: rgb(236, 236, 236);
+}
+
 .card {
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-shadow: var(--shadow);
     height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     padding: 10px;
+    border-radius: 1.2em;
 }
