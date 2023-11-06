@@ -133,3 +133,18 @@ body, html{
     padding: 10px;
     border-radius: 1.2em;
 }
+
+.deleteBtn {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 0.6em;
+    padding: 7px;
+    width: 70%;
+    margin-top: auto;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+.deleteBtn:hover {
+    background-color: rgb(236, 236, 236);
+}

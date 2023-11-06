@@ -1,6 +1,4 @@
 //TO DO
-//reset form after add
-//delete function
 
 const myLibrary = [];
 
@@ -9,26 +7,51 @@ function Book(name, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.index = null;
+}
+
+function deleteElementByIndex (index) {
+    var tempIndex;
+
+    // get index of element in array
+    myLibrary.forEach((b) => {
+        if(b.index == index)
+            tempIndex = myLibrary.indexOf(b);
+    });
+
+    myLibrary.splice(tempIndex, 1);
 }
 
 function createCard(b) {
     var card = document.createElement('div');
     card.classList.add('card');
+    card.dataset.index = myLibrary.indexOf(b);
 
     var title = document.createElement('span');
     var author = document.createElement('span');
     var pages = document.createElement('span');
     var read = document.createElement('span');
     
+    var deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.addEventListener('click', () => {
+        var index = deleteBtn.parentNode.dataset.index
+        var parentCard = deleteBtn.parentNode;
+        deleteElementByIndex(index);
+        document.querySelector('.container').removeChild(parentCard);
+    });
+    
     title.innerHTML = `Title: ${b.name}`;
     author.innerHTML = `Author: ${b.author}`;
     pages.innerHTML = `Pages: ${b.pages}`;
     read.innerHTML = `Read: ${b.read}`;
+    deleteBtn.innerHTML = 'Delete';
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+    card.appendChild(deleteBtn);
     return card;
 }
 
@@ -39,6 +62,7 @@ function displayLibrary(b) {
 
 function addBookToLibrary(b) {
     myLibrary.push(b);
+    b.index = myLibrary.indexOf(b);
     displayLibrary(b);
 }
 
