@@ -1,11 +1,6 @@
 //TO DO
 //reset form after add
 //delete function
-/*
-displayBook needs optimizing, if you add a book to library it needs to
-automatically display it
-*/ 
-
 
 const myLibrary = [];
 
@@ -69,6 +64,13 @@ function isEmpty (str) {
     return (str === '') || (str == null)
 }
 
+function resetForm () { 
+    title.value='';
+    author.value='';
+    pages.value='';
+    read.checked = false;
+}
+
 const submitBtn = document.querySelector('.submitBtn')
 submitBtn.addEventListener('click', (event) => {
     if(!isEmpty(title.value) && !isEmpty(author.value) && !isEmpty(pages.value)){
@@ -76,5 +78,6 @@ submitBtn.addEventListener('click', (event) => {
         const book = new Book(title.value, author.value, pages.value, read.checked);
         addBookToLibrary(book); 
         formContainerPopUp.style.display='none';
+        resetForm();
     }
 });
