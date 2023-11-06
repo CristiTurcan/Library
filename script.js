@@ -1,3 +1,12 @@
+//TO DO
+//reset form after add
+//delete function
+/*
+displayBook needs optimizing, if you add a book to library it needs to
+automatically display it
+*/ 
+
+
 const myLibrary = [];
 
 function Book(name, author, pages, read) {
@@ -5,9 +14,6 @@ function Book(name, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function () {
-        return `${this.name} by ${this.author} has ${this.pages}, read it: ${read}`
-    }
 }
 
 function createCard(b) {
@@ -38,6 +44,7 @@ function displayLibrary(b) {
 
 function addBookToLibrary(b) {
     myLibrary.push(b);
+    displayLibrary(b);
 }
 
 const newBookBtn = document.querySelector('.newBookBtn');
@@ -58,15 +65,16 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#read');
 
+function isEmpty (str) {
+    return (str === '') || (str == null)
+}
 
 const submitBtn = document.querySelector('.submitBtn')
 submitBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    const book = new Book(title.value, author.value, pages.value, read.checked);
-    addBookToLibrary(book); 
-    displayLibrary(book);
-    formContainerPopUp.style.display='none';
+    if(!isEmpty(title.value) && !isEmpty(author.value) && !isEmpty(pages.value)){
+        event.preventDefault();
+        const book = new Book(title.value, author.value, pages.value, read.checked);
+        addBookToLibrary(book); 
+        formContainerPopUp.style.display='none';
+    }
 });
-
-myLibrary.forEach((b) => console.log(b));
-console.log(myLibrary);
