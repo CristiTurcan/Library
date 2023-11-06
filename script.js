@@ -1,5 +1,3 @@
-//TO DO
-
 const myLibrary = [];
 
 function Book(name, author, pages, read) {
@@ -30,7 +28,27 @@ function createCard(b) {
     var title = document.createElement('span');
     var author = document.createElement('span');
     var pages = document.createElement('span');
-    var read = document.createElement('span');
+    var read = document.createElement('button');
+    read.classList.add('readBtn');
+    read.addEventListener('click', () => {
+        if(b.read) {
+            b.read = false;
+            read.innerHTML = `Read: no`;
+            read.style.backgroundColor='red';
+        } else {
+            b.read = true;
+            read.innerHTML = `Read: yes`;
+            read.style.backgroundColor='green';
+        }
+        console.log(b.read);
+    })
+    if(b.read){
+        read.innerHTML = `Read: yes`;
+        read.style.backgroundColor='green';
+    } else {
+        read.innerHTML = `Read: no`;
+        read.style.backgroundColor='red';
+    }
     
     var deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteBtn');
@@ -44,7 +62,6 @@ function createCard(b) {
     title.innerHTML = `Title: ${b.name}`;
     author.innerHTML = `Author: ${b.author}`;
     pages.innerHTML = `Pages: ${b.pages}`;
-    read.innerHTML = `Read: ${b.read}`;
     deleteBtn.innerHTML = 'Delete';
 
     card.appendChild(title);

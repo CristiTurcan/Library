@@ -145,6 +145,17 @@ body, html{
     align-self: center;
 }
 
+.readBtn:hover,
 .deleteBtn:hover {
     background-color: rgb(236, 236, 236);
+}
+
+.readBtn {
+    background-color: transparent;
+    border: 0px solid black;
+    border-radius: 0.6em;
+    padding:7px;
+    width: 70%;
+    align-self: center;
+    margin-top: 4em;
 }
