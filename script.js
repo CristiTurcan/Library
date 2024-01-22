@@ -1,19 +1,40 @@
 const myLibrary = [];
 
-function Book(name, author, pages, read) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.index = null;
+class Book {
+    constructor(name, author, pages, read) {
+        this._name = name;
+        this._author = author;
+        this._pages = pages;
+        this._read = read;
+        this._index = null;
+    }
+
+    get name() { return this._name };
+    get author() { return this._author };
+    get pages() { return this._pages};
+
+    get read() { return this._read; };
+    set read(value) {
+        if (value === true || value == false) {
+            this._read = value;
+        }
+        else {
+            console.log('value of read not good');
+        }
+    }
+
+    get index() { return this._index};
+    set index(value) {
+        this._index = value;
+    }
 }
 
-function deleteElementByIndex (index) {
+function deleteElementByIndex(index) {
     var tempIndex;
 
     // get index of element in array
     myLibrary.forEach((b) => {
-        if(b.index == index)
+        if (b.index == index)
             tempIndex = myLibrary.indexOf(b);
     });
 
@@ -31,25 +52,29 @@ function createCard(b) {
     var read = document.createElement('button');
     read.classList.add('readBtn');
     read.addEventListener('click', () => {
-        if(b.read) {
+        //if read is true, the change to false when pressed on 'read'
+        if (b.read === true) {
             b.read = false;
             read.innerHTML = `Read: no`;
-            read.style.backgroundColor='red';
+            read.style.backgroundColor = 'red';
         } else {
             b.read = true;
             read.innerHTML = `Read: yes`;
-            read.style.backgroundColor='green';
+            read.style.backgroundColor = 'green';
         }
-        console.log(b.read);
     })
-    if(b.read){
+    //this is for the initial value of button on the card
+    //this is wrong because the value in the book object doesn't change
+    //is duplicated and everything should be written in another way
+    if (b.read) {
         read.innerHTML = `Read: yes`;
-        read.style.backgroundColor='green';
+        read.style.backgroundColor = 'green';
     } else {
+        console.log(b.read);
         read.innerHTML = `Read: no`;
-        read.style.backgroundColor='red';
+        read.style.backgroundColor = 'red';
     }
-    
+
     var deleteBtn = document.createElement('button');
     deleteBtn.classList.add('deleteBtn');
     deleteBtn.addEventListener('click', () => {
@@ -58,7 +83,7 @@ function createCard(b) {
         deleteElementByIndex(index);
         document.querySelector('.container').removeChild(parentCard);
     });
-    
+
     title.innerHTML = `Title: ${b.name}`;
     author.innerHTML = `Author: ${b.author}`;
     pages.innerHTML = `Pages: ${b.pages}`;
@@ -89,11 +114,11 @@ const blocker = document.querySelector('.blocker');
 formContainerPopUp.style.display = 'none';
 
 newBookBtn.addEventListener('click', () => {
-    formContainerPopUp.style.display='block';
+    formContainerPopUp.style.display = 'block';
 })
 
 blocker.addEventListener('click', () => {
-    formContainerPopUp.style.display='none';
+    formContainerPopUp.style.display = 'none';
 })
 
 const title = document.querySelector('#title');
@@ -101,24 +126,24 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#read');
 
-function isEmpty (str) {
+function isEmpty(str) {
     return (str === '') || (str == null)
 }
 
-function resetForm () { 
-    title.value='';
-    author.value='';
-    pages.value='';
+function resetForm() {
+    title.value = '';
+    author.value = '';
+    pages.value = '';
     read.checked = false;
 }
 
 const submitBtn = document.querySelector('.submitBtn')
 submitBtn.addEventListener('click', (event) => {
-    if(!isEmpty(title.value) && !isEmpty(author.value) && !isEmpty(pages.value)){
+    if (!isEmpty(title.value) && !isEmpty(author.value) && !isEmpty(pages.value)) {
         event.preventDefault();
         const book = new Book(title.value, author.value, pages.value, read.checked);
-        addBookToLibrary(book); 
-        formContainerPopUp.style.display='none';
+        addBookToLibrary(book);
+        formContainerPopUp.style.display = 'none';
         resetForm();
     }
 });
